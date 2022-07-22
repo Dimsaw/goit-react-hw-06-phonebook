@@ -5,14 +5,6 @@ export default function ContactForm({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  // const handelInputName = e => {
-  //   setName(e.target.value);
-  // };
-
-  // const handelInputNumber = e => {
-  //   setNumber(e.target.value);
-  // };
-
   const handleChange = e => {
     const { name, value } = e.currentTarget;
     switch (name) {
