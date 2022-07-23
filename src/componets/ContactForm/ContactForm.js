@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import s from './ContactForm.module.css';
+import { getContactsItem } from '../../redux/contact_selector';
+import { addContact } from '../../redux/contact_slice';
+
+import shortid from 'shortid';
+import Notiflix from 'notiflix';
+Notiflix.Notify.init({
+  width: '380px',
+  position: 'center-top',
+  failure: {
+    background: '#00bfff',
+    textColor: '#fff',
+  },
+});
 
 export default function ContactForm({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(getContactsItem);
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -23,7 +39,20 @@ export default function ContactForm({ onSubmit }) {
 
   const handelSubmit = e => {
     e.preventDefault();
-    onSubmit({ name, number });
+    const newContact = {
+      id: shortid.generate(),
+      name,
+      number,
+    };
+    if (
+      contacts.find(
+        newContact => newContact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
+      return Notiflix.Notify.failure(`${name} is alredy in contacts`);
+    } else {
+      dispatch(addContact(newContact));
+    }
 
     reset();
   };

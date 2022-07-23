@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { contactDefault } from '../data/data';
 import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/es/types';
+import storage from 'redux-persist/lib/storage';
 
 const initialState = {
   items: contactDefault,
