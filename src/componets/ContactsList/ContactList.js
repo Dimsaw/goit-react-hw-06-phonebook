@@ -25,7 +25,7 @@ const ContactsList = () => {
     );
     return setFilterContacts(filteredContact);
   }, [filter, contacts]);
-  const onDeleteContact = id => dispatch(deleteContact(id));
+  const onDeleteContacts = id => dispatch(deleteContact(id));
 
   return (
     <ul className={s.list}>
@@ -34,7 +34,7 @@ const ContactsList = () => {
           <ContactItem
             name={name}
             number={number}
-            onClick={() => onDeleteContact(id)}
+            onDeleteContacts={() => onDeleteContacts(id)}
           />
         </li>
       ))}
