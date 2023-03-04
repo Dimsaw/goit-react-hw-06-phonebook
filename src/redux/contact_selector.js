@@ -1,13 +1,3 @@
-import { createSelector } from 'reselect';
+export const getContactsItem = state => state.contacts.contacts;
 
-const getContactsState = state => state.contacts;
-
-export const getContactsItem = createSelector(
-  getContactsState,
-  contactsState => contactsState.items
-);
-
-export const getContactsFilter = createSelector(
-  getContactsState,
-  contactState => contactState.filter
-);
+export const getContactsFilter = state => state.filter.filter;

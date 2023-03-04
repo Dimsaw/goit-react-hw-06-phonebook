@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './ContactForm.module.css';
 import { getContactsItem } from '../../redux/contact_selector';
-import { addContact } from '../../redux/contact_slice';
+import { addContact } from '../../redux/slice/contact_slice';
 
 import shortid from 'shortid';
 import Notiflix from 'notiflix';

@@ -6,7 +6,7 @@ import {
   getContactsItem,
   getContactsFilter,
 } from '../../redux/contact_selector';
-import { deleteContact } from '../../redux/contact_slice';
+import { deleteContact } from '../../redux/slice/contact_slice';
 
 import { useState, useEffect } from 'react';
 
