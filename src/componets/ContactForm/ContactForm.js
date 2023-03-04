@@ -44,12 +44,17 @@ export default function ContactForm({ onSubmit }) {
       name,
       number,
     };
+
     if (
       contacts.find(
         newContact => newContact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
       return Notiflix.Notify.failure(`${name} is alredy in contacts`);
+    } else if (contacts.find(newContact => newContact.number === number)) {
+      return Notiflix.Notify.failure(
+        `This number: ${number} is alredy in contacts  with name: ${name}`
+      );
     } else {
       dispatch(addContact(newContact));
     }

@@ -8,28 +8,26 @@ import {
 } from '../../redux/contact_selector';
 import { deleteContact } from '../../redux/slice/contact_slice';
 
-import { useState, useEffect } from 'react';
-
 const ContactsList = () => {
-  const [filterContacts, setFilterContacts] = useState([]);
   const contacts = useSelector(getContactsItem);
   const filter = useSelector(getContactsFilter);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const filteredContact = contacts.filter(
+  const findContacts = () => {
+    return contacts.filter(
       contact =>
         contact.name.toLowerCase().includes(filter) ??
         contact.number.toLowerCase().includes(filter)
     );
-    return setFilterContacts(filteredContact);
-  }, [filter, contacts]);
+  };
+  const resultOfFindingContacts = findContacts();
+
   const onDeleteContacts = id => dispatch(deleteContact(id));
 
   return (
     <ul className={s.list}>
-      {filterContacts.map(({ id, name, number }) => (
+      {resultOfFindingContacts.map(({ id, name, number }) => (
         <li key={id} className={s.item}>
           <ContactItem
             name={name}
